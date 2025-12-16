@@ -30,9 +30,25 @@ namespace INFRASTRUCTURE.Adapters
             return _Mapper.Map<Todo>(Result);
         }
 
-        public async Task<Todo> CreateAsync(TodoRequest Request)
+        public async Task<List<TodoGroup>> GetGroupAsync(long UserId)
+        {
+            var Result = await _Context.TodoModel
+                                .Where(e => e.UserId == UserId)
+                                .Where(e => e.Deleted_At == null)
+                                .GroupBy(t => t.Estado)
+                                .Select(g => new {
+                                    Label = g.Key.ToString(),
+                                    Amount = g.Count()
+                                })
+                                .ToListAsync();
+
+            return [.. Result.Select(r => new TodoGroup(r.Label!, r.Amount))];
+        }
+
+        public async Task<Todo> CreateAsync(TodoRequest Request, long UserId)
         {
             var Result = _Mapper.Map<TodoModel>(Request);
+            Result.UserId = UserId;
 
             await _Context.TodoModel.AddAsync(Result);
             await _Context.SaveChangesAsync();

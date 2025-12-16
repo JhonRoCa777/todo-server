@@ -10,6 +10,9 @@ namespace INFRASTRUCTURE.Validators
             RuleFor(e => e.Description)
                 .NotEmpty().WithMessage("Campo Obligatorio")
                 .MaximumLength(255).WithMessage("Máximo 255 Caracteres");
+
+            RuleFor(e => e.Estado)
+                .IsInEnum().WithMessage("Valor NO Admitido");
         }
     }
 }

@@ -4,6 +4,7 @@ namespace DOMAIN.Entities
 {
     public record Todo(
         long Id,
+        long UserId,
         string Description,
         Estado Estado,
         string Created_At,
@@ -12,7 +13,14 @@ namespace DOMAIN.Entities
     { }
 
     public record TodoRequest(
-        string Description
+        string Description,
+        Estado Estado
+    )
+    { }
+
+    public record TodoGroup(
+        string Label,
+        int Amount
     )
     { }
 }

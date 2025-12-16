@@ -9,12 +9,12 @@ namespace INFRASTRUCTURE.Controllers
     [Route("api/[controller]")]
     public class AuthController(
             JwtUtils JwtUtils, JwtSettingsDTO JwtSettingsDTO,
-            IUserRepository PatientRepository
+            IUserRepository UserRepository
         ) : ControllerBase
     {
         private readonly JwtUtils _JwtUtils = JwtUtils;
         private readonly JwtSettingsDTO _JwtSettingsDTO = JwtSettingsDTO;
-        private readonly IUserRepository _UserRepository = PatientRepository;
+        private readonly IUserRepository _UserRepository = UserRepository;
 
         [HttpPost("[action]")]
         public async Task<IActionResult> Login([FromBody] UserLogin Request)
@@ -27,7 +27,7 @@ namespace INFRASTRUCTURE.Controllers
             {
                 HttpOnly = true,
                 Secure = true,
-                SameSite = SameSiteMode.Strict,
+                SameSite = SameSiteMode.None,
                 Expires = DateTime.UtcNow.AddMinutes(_JwtSettingsDTO.ExpireMinutes)
             });
 
@@ -39,7 +39,7 @@ namespace INFRASTRUCTURE.Controllers
         {
             var token = Request.Cookies[_JwtSettingsDTO.Name];
             _JwtUtils.ValidateToken(token!);
-            return Ok(new { valid = true });
+            return Ok();
         }
 
         [HttpGet("[action]")]

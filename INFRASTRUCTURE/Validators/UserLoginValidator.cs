@@ -15,7 +15,7 @@ namespace INFRASTRUCTURE.Validators
             RuleFor(e => e.Password)
                 .NotNull().WithMessage("Campo Obligatorio")
                 .MinimumLength(8).WithMessage("Mínimo 8 Caracteres")
-                .MaximumLength(15).WithMessage("Máximo 15 Caracteres");
+                .MaximumLength(15).WithMessage("Máximo 30 Caracteres");
         }
     }
 }

@@ -20,7 +20,8 @@ namespace INFRASTRUCTURE.Config
                 {
                     db.UserModel.AddRange(
                         new UserModel { Fullname = "Jhonatan Romero", Email = "jhonatan@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("hola1234"), Role = Role.ADMIN },
-                        new UserModel { Fullname = "Stiven Campuzano", Email = "stiven@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("hola1234"), Role = Role.USER }
+                        new UserModel { Fullname = "Stiven Campuzano", Email = "stiven@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("hola1234"), Role = Role.USER },
+                        new UserModel { Fullname = "Prueba Prueba", Email = "prueba@gmail.com", Password = BCrypt.Net.BCrypt.HashPassword("hola1234"), Role = Role.USER, Deleted_At = DateTime.Now }
                     );
                     db.SaveChanges();
                 }

@@ -20,14 +20,12 @@ namespace INFRASTRUCTURE.Models
         public string Email { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(15)]
+        [MaxLength(255)]
         public string Password { get; set; } = string.Empty;
 
-        [Required]
-        public Role Role { get; set; }
+        public Role? Role { get; set; }
 
-        [Required]
-        public DateTime Created_At { get; set; }
+        public DateTime? Created_At { get; set; }
 
         public DateTime? Deleted_At { get; set; }
 

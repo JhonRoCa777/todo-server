@@ -15,8 +15,11 @@ namespace APPLICATION.Services
         public async Task<Todo> GetAsync(long Id)
             => await _Repo.GetAsync(Id);
 
-        public async Task<Todo> CreateAsync(TodoRequest Request)
-            => await _Repo.CreateAsync(Request);
+        public async Task<List<TodoGroup>> GetGroupAsync(long UserId)
+            => await _Repo.GetGroupAsync(UserId);
+
+        public async Task<Todo> CreateAsync(TodoRequest Request, long UserId)
+            => await _Repo.CreateAsync(Request, UserId);
 
         public async Task<Todo> UpdateAsync(long Id, TodoRequest Request)
             => await _Repo.UpdateAsync(Id, Request);

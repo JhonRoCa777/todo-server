@@ -17,14 +17,16 @@ namespace INFRASTRUCTURE.Models
             modelBuilder.Entity<UserModel>(entity =>
             {
                 entity.Property(e => e.Created_At).HasDefaultValueSql("GETUTCDATE()");
-                entity.Property(e => e.Role).HasDefaultValue(Role.USER);
+                entity.Property(e => e.Role).HasConversion<string>()
+                                            .HasDefaultValue(Role.USER);
                 entity.HasIndex(e => e.Email).IsUnique();
             });
 
             modelBuilder.Entity<TodoModel>(entity =>
             {
                 entity.Property(e => e.Created_At).HasDefaultValueSql("GETUTCDATE()");
-                entity.Property(e => e.Estado).HasDefaultValue(Estado.PENDIENTE);
+                entity.Property(e => e.Estado).HasConversion<string>()
+                                                .HasDefaultValue(Estado.PENDIENTE);
             });
         }
     }

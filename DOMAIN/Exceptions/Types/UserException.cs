@@ -1,6 +1,6 @@
 ﻿namespace DOMAIN.Exceptions.Types
 {
-    public class UserNotFoundException() : UnauthorizedException("Usuario NO Encontrado") { }
+    public class UserNotFoundException() : GeneralException("Usuario NO Encontrado") { }
 
     public class UserLoginNotFoundException() : GeneralException("Credenciales incorrectas") { }
 

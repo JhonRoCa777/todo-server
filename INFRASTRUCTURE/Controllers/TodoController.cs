@@ -25,9 +25,16 @@ namespace INFRASTRUCTURE.Controllers
         public async Task<IActionResult> Get(long Id)
             => Ok(await _TodoService.GetAsync(Id));
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetGroup()
+            => Ok(await _TodoService.GetGroupAsync(
+                long.TryParse(HttpContext.Items[_JwtSettingsDTO.Name]?.ToString(), out var userId) ? userId : -1
+            ));
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] TodoRequest Request)
-            => Ok(await _TodoService.CreateAsync(Request));
+            => Ok(await _TodoService.CreateAsync(Request,
+                long.TryParse(HttpContext.Items[_JwtSettingsDTO.Name]?.ToString(), out var userId) ? userId : -1));
 
         [HttpPut("{Id}")]
         public async Task<IActionResult> Put(long Id, [FromBody] TodoRequest Request)

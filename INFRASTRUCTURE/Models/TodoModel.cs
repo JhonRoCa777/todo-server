@@ -15,11 +15,9 @@ namespace INFRASTRUCTURE.Models
         [MaxLength(255)]
         public string Description { get; set; } = string.Empty;
 
-        [Required]
-        public Estado Estado { get; set; }
+        public Estado? Estado { get; set; }
 
-        [Required]
-        public DateTime Created_At { get; set; }
+        public DateTime? Created_At { get; set; }
 
         public DateTime? Deleted_At { get; set; }
 

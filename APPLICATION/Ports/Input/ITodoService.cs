@@ -8,7 +8,9 @@ namespace APPLICATION.Ports.Input
 
         Task<Todo> GetAsync(long Id);
 
-        Task<Todo> CreateAsync(TodoRequest Request);
+        Task<List<TodoGroup>> GetGroupAsync(long UserId);
+
+        Task<Todo> CreateAsync(TodoRequest Request, long UserId);
 
         Task<Todo> UpdateAsync(long TodoId, TodoRequest Request);
 
